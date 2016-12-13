@@ -24,15 +24,6 @@ tonight = forecast_items[1]
 period = tonight.find(class_="period-name").get_text(" ")
 short_desc = tonight.find(class_="short-desc").get_text(" ")
 
-# Hazardous weather
-hazardous_weather = soup.find(class_="panel-danger")
-weather_conditions = hazardous_weather.find(class_="anchor-hazards").get_text()
-
-if hazardous_weather == soup.find(class_="panel-danger"):
-    print('\n' + weather_conditions.upper() + 'statement available'.upper())
-else:
-    print()
-
 # Tonight temp
 tonight_temp = tonight.find(class_="temp-low").get_text()
 
