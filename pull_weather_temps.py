@@ -1,4 +1,4 @@
-'''Pull data from Wunderground website utilizing BeautifulSou and urllib
+'''Pull data from Wunderground website utilizing BeautifulSoup and urllib
  to scrape and parse out temps based on set criteria then save to CSV'''
 
 from bs4 import BeautifulSoup
@@ -6,14 +6,17 @@ from urllib.request import urlopen
 import csv
 
 # Iterate over months, days
-for m in range(0, 13):  # Set months to query
+for m in range(11, 13):  # Set months to query
     for d in range(1, 32):
         if (m == 2 and d > 28):  # Feb
             break
         elif (m in [4, 6, 9, 11] and d > 30):
             break
         timestamp = '2016-' + str(m) + '_' + str(d)
-        print('Getting data for ' + timestamp)
+        # Location
+        location = 'KDFW'
+        print('Getting data for ' + location + ' ' + timestamp)
+        # Get weather history from 'KDFW'
         url = "https://www.wunderground.com/history/airport/KDFW/2016/" + \
             str(m) + "/" + str(d) + "/DailyHistory.html"
         page = urlopen(url)
@@ -36,6 +39,6 @@ for m in range(0, 13):  # Set months to query
         # Write to CSV
         with open('temp_history.csv', 'a', newline='') as csv_file:
             writer = csv.writer(csv_file)
-            writer.writerow([timestamp, dayTemp, dayAverage])
+            writer.writerow([location, timestamp, dayTemp, dayAverage])
 
-print('Data recieved')
+print('Data received')
