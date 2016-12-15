@@ -1,4 +1,4 @@
-''' Trending athletes as per Google search trends '''
+''' Stock market results per Yahoo Financial '''
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 
