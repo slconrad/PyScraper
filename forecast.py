@@ -19,15 +19,13 @@ seven_day = soup.find(id="seven-day-forecast")
 forecast_items = seven_day.find_all(class_="tombstone-container")
 today = forecast_items[0]
 today_forecast = today.find(class_="short-desc").get_text(" ")
-tonight = forecast_items[1]
 
-period = tonight.find(class_="period-name").get_text(" ")
-short_desc = tonight.find(class_="short-desc").get_text(" ")
+period = today.find(class_="period-name").get_text(" ")
+short_desc = today.find(class_="short-desc").get_text(" ")
 
-# Tonight temp
-tonight_temp = tonight.find(class_="temp-low").get_text()
+# today temp today_temp = today.find(class_="temp-low").get_text()
 
-img = tonight.find("img")
+img = today.find("img")
 desc = img['title']
 period_tags = seven_day.select(".tombstone-container .period-name")
 periods = [pt.get_text() for pt in period_tags]
@@ -40,7 +38,7 @@ descs = [d["title"] for d in seven_day.select(".tombstone-container img")]
 print('Currently in DFW:')
 print(today_forecast)
 print(' ' + current_temp)
-print(' Tonight ' + tonight_temp + ', ' + short_desc)
+print(' today ' + period + ', ' + short_desc)
 print('--------------')
 print(' ' + 'Extended Forecast:')
 print(descs)
